@@ -18,6 +18,15 @@ public class Edge {
 	}
 	
 	@Override
+	public boolean equals(Object o){
+		if(!(o instanceof Edge)){
+			return false;
+		}
+		Edge e = (Edge)o;
+		return this.x == e.x && this.y == e.y;		
+	}
+	
+	@Override
 	public String toString(){
 		return "Edge " + this.x + " : " + this.y; 
 	}

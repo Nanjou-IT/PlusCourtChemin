@@ -8,9 +8,6 @@ import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
-
-
-
 public class PicturePng {
 	
 	private final String name;
@@ -25,7 +22,7 @@ public class PicturePng {
 	
 	public void init(){
 		for(int i = 0 ; i < graph.getHeight() ; i++){
-			for(int j = 0 ; j < graph.getWidth() ; i++){
+			for(int j = 0 ; j < graph.getWidth() ; j++){
 				image.setRGB(i, j, Color.WHITE.getRGB());
 			}
 		}
