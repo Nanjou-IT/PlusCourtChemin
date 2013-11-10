@@ -1,27 +1,30 @@
 package fr.upem.pluscourtchemin;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class GraphInformations {
 	private Edge start;
 	private Edge end;
-	// private LinkedList<Edge> invalidEdge;
-	private HashSet<Edge> invalidEdge;
+	private final HashSet<Edge> invalidEdge;
 	private int height;
 	private int width;
 
 	public GraphInformations() {
-		// invalidEdge = new LinkedList<Edge>();
-		invalidEdge = new HashSet<Edge>();
+		this.start = new Edge();
+		this.end = new Edge();
+		this.height = 0;
+		this.width = 0;
+		this.invalidEdge = new HashSet<Edge>();
 	}
 
-	@SuppressWarnings("unchecked")
 	// Je sais ce que je fais ;)
-	public GraphInformations(Edge start, Edge end, HashSet<Edge> invalidEdge,
-			int height, int width) {
-		this.start = new Edge(start.getX(), start.getY());
-		this.end = new Edge(end.getX(), end.getY());
+	@SuppressWarnings("unchecked")
+	public GraphInformations(Edge start, Edge end, HashSet<Edge> invalidEdge, int height, int width) {
+		Objects.requireNonNull(invalidEdge);
+		this.start = Objects.requireNonNull(start);
+		this.end = Objects.requireNonNull(end);
 		this.height = height;
 		this.width = width;
 		this.invalidEdge = (HashSet<Edge>) invalidEdge.clone();
@@ -43,23 +46,13 @@ public class GraphInformations {
 		this.end = end;
 	}
 
-	/*
-	 * public LinkedList<Edge> getInvalidEdge() { return invalidEdge; }
-	 * 
-	 * public void setInvalidEdge(LinkedList<Edge> invalidEdge) {
-	 * this.invalidEdge = invalidEdge; }
-	 */
-
 	public Set<Edge> getInvalidEdge() {
 		return invalidEdge;
 	}
-
-	/*
-	 * public void setInvalidEdge(HashSet<Edge> invalidEdge){ this.invalidEdge =
-	 * invalidEdge;
-	 * 
-	 * }
-	 */
+	
+	public void addInvalidEdge(Edge e) {
+		this.invalidEdge.add(e);
+	}
 
 	public int getHeight() {
 		return height;

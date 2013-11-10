@@ -9,6 +9,10 @@ public class Edge {
 		this.y = y;
 	}
 	
+	public Edge() {
+		this(0,0);
+	}
+	
 	public int getX(){
 		return this.x;
 	}
@@ -28,6 +32,6 @@ public class Edge {
 	
 	@Override
 	public String toString(){
-		return "Edge " + this.x + " : " + this.y; 
+		return "Edge > " + this.x + " : " + this.y; 
 	}
 }

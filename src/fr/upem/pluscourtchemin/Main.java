@@ -8,29 +8,27 @@ import org.xml.sax.SAXException;
 
 public class Main {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		
+		// Have to handle args properly
 		System.out.println("Projet d'algo");
 		String nameFileXml = "test.xml";
 		
+		// Parse the given file and map it into the GraphObject
+		GraphInformations graphInfos = new GraphInformations();
+		XMLParser parser = new XMLParser(nameFileXml, graphInfos);
+		parser.parseDocument();		
 		
-		XMLParser w = new XMLParser(nameFileXml);
-		w.parseDocument();		
+		// TODO : ..
+		// Have to check the GraphObject: borns etc..
 		
-		
-		GraphInformations g = w.getGraphInformations();
-		PicturePng p = new PicturePng("test",g);
+		// Draw the PNG image from GraphObject and write it on disk.
+		PicturePng p = new PicturePng("test.png", graphInfos);
 		p.init();
-		p.addEnd();
-		p.addStart();
-		p.addInvalidPoints();
+		p.addPoints();
 		p.saveImage();
 		
-		Graph graph = new Graph(g);
-		graph.affiche();
+		Graph graph = new Graph();
+		graph.createGraph(graphInfos);
+		graph.print();
 		
-		
-		
-
-	
 	}
 }

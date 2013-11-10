@@ -1,5 +1,6 @@
 package fr.upem.pluscourtchemin;
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -10,15 +11,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class XMLParser extends DefaultHandler {
-
 	private final String nameXmlFile;
-	private GraphInformations graph;
+	private final GraphInformations graph;
 
-	public XMLParser(String nameXmlFile) {
-		super();
-
-		this.graph = new GraphInformations();
-		this.nameXmlFile = nameXmlFile;
+	public XMLParser(String nameXmlFile, GraphInformations graph) {
+		this.graph = Objects.requireNonNull(graph);
+		this.nameXmlFile = Objects.requireNonNull(nameXmlFile);
 	}
 
 	public void parseDocument() {
@@ -26,31 +24,23 @@ public class XMLParser extends DefaultHandler {
 		try {
 			SAXParser parser = factory.newSAXParser();
 			parser.parse(nameXmlFile, this);
-
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Erreur de configuration du parseur");
-			System.out.println("Lors de l'appel √† newSAXParser()");
+			System.out.println("Lors de l'appel ‡ newSAXParser()");
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Erreur de parsing");
-			System.out.println("Lors de l'appel √† parse()");
+			System.out.println("Lors de l'appel ‡ parse()");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Erreur d'entr√©e/sortie");
-			System.out.println("Lors de l'appel √† parse()");
+			System.out.println("Erreur d'entree/sortie");
+			System.out.println("Lors de l'appel ‡ parse()");
 			e.printStackTrace();
 		}
 	}
 
 	public void startElement(String uri,String localName,String qName,Attributes attributes) throws SAXException{
-
-		
-		if (qName.equalsIgnoreCase("rectangle")) {
-
-		} else if (qName.equalsIgnoreCase("dimension")) {
+		if (qName.equalsIgnoreCase("dimension")) {
 			this.graph.setHeight(Integer.parseInt(attributes.getValue("height")));
 			this.graph.setWidth(Integer.parseInt(attributes.getValue("width")));
 		} else if (qName.equalsIgnoreCase("start")) {
@@ -67,32 +57,9 @@ public class XMLParser extends DefaultHandler {
 			for(int i = topLeftX ; i <= bottomRightX ; i++){
 				for( int j = topLeftY ; j <= bottomRightY ; j++){
 					Edge e = new Edge(i,j);
-					this.graph.getInvalidEdge().add(e);
+					this.graph.addInvalidEdge(e);
 				}
 			}
-
 		}
-		
 	}
-
-	public void endElement(String uri, String localName, String qName) {
-		return;
-	}
-
-	public void startParsing() {
-		System.out.println("D√©but du parsing");
-	}
-
-	public void endParsing() {
-		System.out.println(graph.getHeight());
-		System.out.println(graph.getHeight());
-		System.out.println(graph.getStart());
-		System.out.println(graph.getEnd());
-		System.out.println("Fin du parsing");
-	}
-
-	public GraphInformations getGraphInformations() {
-		return graph;
-	}
-
 }
