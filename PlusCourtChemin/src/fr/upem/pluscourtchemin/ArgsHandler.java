@@ -1,4 +1,4 @@
-package projetAlgo;
+package fr.upem.pluscourtchemin;
 
 public class ArgsHandler {
 	

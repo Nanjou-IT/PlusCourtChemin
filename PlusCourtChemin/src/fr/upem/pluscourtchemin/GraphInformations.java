@@ -1,8 +1,7 @@
-package projetAlgo;
+package fr.upem.pluscourtchemin;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-
 
 public class GraphInformations {
 	private Edge start;

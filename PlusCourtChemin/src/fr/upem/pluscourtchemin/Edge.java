@@ -1,4 +1,4 @@
-package projetAlgo;
+package fr.upem.pluscourtchemin;
 
 public class Edge {
 	private final int x;

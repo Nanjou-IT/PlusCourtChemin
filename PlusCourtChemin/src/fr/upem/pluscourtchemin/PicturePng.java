@@ -1,4 +1,4 @@
-package projetAlgo;
+package fr.upem.pluscourtchemin;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -1,4 +1,5 @@
-package projetAlgo;
+package fr.upem.pluscourtchemin;
+
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
