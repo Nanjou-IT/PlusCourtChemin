@@ -9,7 +9,7 @@ import org.xml.sax.SAXException;
 public class Main {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		// Have to handle args properly
-		System.out.println("Projet d'algo");
+		System.out.println("Projet d'algo !");
 		String nameFileXml = "test.xml";
 		
 		// Parse the given file and map it into the GraphObject
