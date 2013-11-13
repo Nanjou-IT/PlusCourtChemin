@@ -13,7 +13,7 @@ public class Graph {
 	 *  Bordure ? Obstacle ? Edge d'arrivé ?
 	 *  
 	 * 			*  *  *
-	 * 	 		*  O  *
+	 * 	 		*  E  *
 	 *  		*  *  *
 	 */
 	public void createGraph(GraphInformations graph){
@@ -22,7 +22,7 @@ public class Graph {
 		for (int i = 0; i < graph.getHeight(); i++) {
 			for (int j = 0; j < graph.getWidth(); j++) {
 				
-				Edge e = new Edge(i, j);
+				Vertex e = new Vertex(i, j);
 				// Edge is not an obstacle, so it is possible to reach it 
 				if (!(graph.getInvalidEdge().contains(e))) {
 					// Edge 'e' is a starting edge
@@ -30,9 +30,9 @@ public class Graph {
 					
 					for (int k = i - 1; k <= i + 1; k++) {
 						for (int l = j - 1; l <= j + 1; l++) {
-							if ((k >= 0 && k < graph.getHeight()) && (l >= 0	&& l < graph.getWidth())) { // Check Range
+							if ((k >= 0 && k < graph.getHeight()) && (l >= 0	&& l < graph.getWidth())  ) { // Check Range
 								// On enleve le cas ou est identique a nous meme
-								list[compteur].addDestinationEdge(new Edge(k, l));
+								list[compteur].addDestinationVertex(new Vertex(k, l));
 							}
 						}
 					}
@@ -47,11 +47,11 @@ public class Graph {
 	}
 	
 	
-	public boolean exist(Edge a, Edge b) {
+	public boolean exist(Vertex a, Vertex b) {
 		return false;
 	}
 	
-	public void addEdge(Edge a, Edge b) { 
+	public void addEdge(Vertex a, Vertex b) { 
 		
 	}
 	

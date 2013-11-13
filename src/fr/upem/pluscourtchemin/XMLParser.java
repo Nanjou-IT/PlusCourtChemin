@@ -44,10 +44,10 @@ public class XMLParser extends DefaultHandler {
 			this.graph.setHeight(Integer.parseInt(attributes.getValue("height")));
 			this.graph.setWidth(Integer.parseInt(attributes.getValue("width")));
 		} else if (qName.equalsIgnoreCase("start")) {
-			Edge s = new Edge(Integer.parseInt(attributes.getValue("x")),Integer.parseInt(attributes.getValue("y")));
+			Vertex s = new Vertex(Integer.parseInt(attributes.getValue("x")),Integer.parseInt(attributes.getValue("y")));
 			this.graph.setStart(s);
 		} else if (qName.equalsIgnoreCase("end")) {
-			Edge e = new Edge(Integer.parseInt(attributes.getValue("x")),Integer.parseInt(attributes.getValue("y")));
+			Vertex e = new Vertex(Integer.parseInt(attributes.getValue("x")),Integer.parseInt(attributes.getValue("y")));
 			this.graph.setEnd(e);
 		} else if (qName.equalsIgnoreCase("obstacle")) {
 			int topLeftX = Integer.parseInt(attributes.getValue("topleftx"));
@@ -56,7 +56,7 @@ public class XMLParser extends DefaultHandler {
 			int bottomRightY = Integer.parseInt(attributes.getValue("bottomrighty"));
 			for(int i = topLeftX ; i <= bottomRightX ; i++){
 				for( int j = topLeftY ; j <= bottomRightY ; j++){
-					Edge e = new Edge(i,j);
+					Vertex e = new Vertex(i,j);
 					this.graph.addInvalidEdge(e);
 				}
 			}

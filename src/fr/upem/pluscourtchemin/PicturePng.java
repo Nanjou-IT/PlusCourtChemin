@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -30,18 +29,18 @@ public class PicturePng {
 	}
 	
 	private void addInvalidPoints(){
-		Iterator<Edge> it = graph.getInvalidEdge().iterator();
+		Iterator<Vertex> it = graph.getInvalidEdge().iterator();
 		while(it.hasNext()){
-			Edge e = (Edge) it.next();
+			Vertex e = (Vertex) it.next();
 			image.setRGB(e.getX(), e.getY(), Color.BLACK.getRGB());
 		}
 	}
 
 	public void addPoints() {
-		Edge eStart = graph.getStart();
+		Vertex eStart = graph.getStart();
 		image.setRGB(eStart.getX(), eStart.getY(), Color.RED.getRGB());
 		
-		Edge eEnd = graph.getEnd();
+		Vertex eEnd = graph.getEnd();
 		image.setRGB(eEnd.getX(), eEnd.getY(), Color.RED.getRGB());
 		
 		addInvalidPoints();

@@ -5,28 +5,28 @@ import java.util.List;
 import java.util.Objects;
 
 public class GraphImpl {
-	private final Edge start;
-	private final LinkedList<Edge> destinations;
+	private final Vertex start;
+	private final LinkedList<Vertex> destinations;
 	
-	public GraphImpl(Edge e){
+	public GraphImpl(Vertex e){
 		this.start = Objects.requireNonNull(e);
-		this.destinations = new LinkedList<Edge>();		
+		this.destinations = new LinkedList<Vertex>();		
 	}
 	
-	public void addDestination(Edge e){
+	public void addDestination(Vertex e){
 		Objects.requireNonNull(e);
 		this.destinations.add(e);
 	}
 	
-	public Edge getStart(){
+	public Vertex getStart(){
 		return this.start;
 	}
 	
-	public List<Edge> getDestinations(){
+	public List<Vertex> getDestinations(){
 		return this.destinations;
 	}
 	
-	public void addDestinationEdge(Edge e){
+	public void addDestinationVertex(Vertex e){
 		this.destinations.add(e);
 	}
 }

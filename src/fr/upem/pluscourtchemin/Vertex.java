@@ -1,15 +1,15 @@
 package fr.upem.pluscourtchemin;
 
-public class Edge {
+public class Vertex {
 	private final int x;
 	private final int y;
 	
-	public Edge(int x, int y){
+	public Vertex(int x, int y){
 		this.x = x;
 		this.y = y;
 	}
 	
-	public Edge() {
+	public Vertex() {
 		this(0,0);
 	}
 	
@@ -23,10 +23,10 @@ public class Edge {
 	
 	@Override
 	public boolean equals(Object o){
-		if(!(o instanceof Edge)){
+		if(!(o instanceof Vertex)){
 			return false;
 		}
-		Edge e = (Edge)o;
+		Vertex e = (Vertex)o;
 		return this.x == e.x && this.y == e.y;		
 	}
 	
