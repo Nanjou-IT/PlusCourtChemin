@@ -32,6 +32,6 @@ public class Vertex {
 	
 	@Override
 	public String toString(){
-		return "Edge > " + this.x + " : " + this.y; 
+		return "Vertex " + this.x + " : " + this.y; 
 	}
 }

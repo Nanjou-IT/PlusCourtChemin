@@ -1,19 +1,27 @@
 package fr.upem.pluscourtchemin;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class Graph {
 	// Il faut qu'on voit les autres structures possibles
-	private final GraphImpl[] list ;
+	//private final GraphImpl[] list ;
+	// Why Not : SortedMap
+	HashMap<Vertex,List<Vertex>> map ;
 	
 	public Graph(){
-		//list = new GraphImpl[graph.getHeight() * graph.getWidth() - graph.getInvalidEdge().size() + 1];
-		list = new GraphImpl[100];
+		//list = new GraphImpl[graph.getHeight() * graph.getWidth() - graph.getInvalidEdge().size() + 1];*
+		map = new HashMap<Vertex,List<Vertex>>();
 	}
 	
 	/*
-	 *  Bordure ? Obstacle ? Edge d'arrivé ?
+	 *  Bordure ? Obstacle ? Vertex d'arrivé ?
 	 *  
 	 * 			*  *  *
-	 * 	 		*  E  *
+	 * 	 		*  V  *
 	 *  		*  *  *
 	 */
 	public void createGraph(GraphInformations graph){
@@ -26,16 +34,19 @@ public class Graph {
 				// Edge is not an obstacle, so it is possible to reach it 
 				if (!(graph.getInvalidEdge().contains(e))) {
 					// Edge 'e' is a starting edge
-					list[compteur] = new GraphImpl(e);
+					//list[compteur] = new GraphImpl(e);
+					
+					
+					List<Vertex> tmp =  new LinkedList<Vertex>();
 					
 					for (int k = i - 1; k <= i + 1; k++) {
 						for (int l = j - 1; l <= j + 1; l++) {
 							if ((k >= 0 && k < graph.getHeight()) && (l >= 0	&& l < graph.getWidth())  ) { // Check Range
-								// On enleve le cas ou est identique a nous meme
-								list[compteur].addDestinationVertex(new Vertex(k, l));
+								tmp.add(new Vertex(i,j));								
 							}
 						}
 					}
+					map.put(e, tmp);
 					compteur++;
 				}
 			}
@@ -43,7 +54,7 @@ public class Graph {
 	}
 	
 	public int numberEdge() {
-		return list.length;
+		return map.size();
 	}
 	
 	
@@ -57,9 +68,11 @@ public class Graph {
 	
 	// Debug
 	public void print(){
-		for(GraphImpl gp : list){
-			System.out.println(gp.getStart() + " -> " + gp.getDestinations());
-		}
+		 Iterator it = map.entrySet().iterator();
+		    while (it.hasNext()) {
+		        Map.Entry m = (Map.Entry)it.next();
+		        System.out.println(m.getKey() + " => " + m.getValue());
+		        }
 	}
 
 	
