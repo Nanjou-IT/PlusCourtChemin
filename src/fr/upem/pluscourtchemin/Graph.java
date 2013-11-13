@@ -1,77 +1,85 @@
 package fr.upem.pluscourtchemin;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
 
 public class Graph {
 	private final GraphInformations infos;
-	private final LinkedList<Integer>[] list ;
-	
+	private final LinkedList<Integer>[] list;
+
 	@SuppressWarnings("unchecked")
-	public Graph(GraphInformations graph){
-		this.infos = new GraphInformations(graph);				
-		LinkedList<Integer>[] tmp = new LinkedList[infos.getHeight() * infos.getWidth()];
-		for(int i =0 ; i < tmp.length ; i++){
+	public Graph(GraphInformations graph) {
+		this.infos = new GraphInformations(graph);
+		LinkedList<Integer>[] tmp = new LinkedList[infos.getHeight()* infos.getWidth()];
+		for (int i = 0; i < tmp.length; i++) {
 			tmp[i] = new LinkedList<Integer>();
-		}		
+		}
 		this.list = tmp;
 	}
 	
-	/*
-	 *  Bordure ? Obstacle ? Vertex d'arriv� ?
-	 *  
-	 * 			*  *  *
-	 * 	 		*  V  *
-	 *  		*  *  *
-	 */
-	public void createGraph(){
-
-		for (int i = 0; i < infos.getHeight(); i++) {
-			for (int j = 0; j < infos.getWidth(); j++) {
-				
-				Vertex e = new Vertex(i, j);
-				// Edge is not an obstacle, so it is possible to reach it 
-				if (!(infos.getInvalidEdge().contains(e))) {
-					// Edge 'e' is a starting edge
-					//list[compteur] = new GraphImpl(e);
-					
-					
-					LinkedList<Integer> tmp =  new LinkedList<Integer>();
-					
-					for (int k = i - 1; k <= i + 1; k++) {
-						for (int l = j - 1; l <= j + 1; l++) {
-							if ((k >= 0 && k < infos.getHeight()) && (l >= 0	&& l < infos.getWidth())  ) { // Check Range
-								tmp.add(k*infos.getHeight()+l);
-								
-							}
-						}
-					}
-					list[i*infos.getHeight()+j] = tmp;
+	
+	private void checkBound(int i, int j,LinkedList<Integer> tmp){
+		for (int k = i - 1; k <= i + 1; k++) {
+			for (int l = j - 1; l <= j + 1; l++) {
+				int t = k * infos.getHeight() + l;
+				if ((k >= 0 && k < infos.getHeight()) && (l >= 0 && l < infos.getWidth()) && t != i * infos.getHeight() + j) { 																
+					tmp.add(k * infos.getHeight() + l);
 				}
 			}
 		}
 	}
 	
+	private void removeIllegalEdge(int i, int j) { // C'est a finir
+	
+		Vertex v = new Vertex(i, j);
+		int current_index = i * infos.getHeight() + j;
+
+		if (infos.getInvalidVertex().contains(v)) {
+			System.out.println("toto");
+			list[current_index] = null;
+		}
+		if (list[i * infos.getHeight() + j] != null) {
+			for (Integer p : list[current_index]) {
+				
+				
+				int c_i = p / infos.getHeight();
+				int c_j = p - c_i * infos.getHeight();
+				
+				
+				Vertex c = new Vertex(c_i, c_j);
+				if (infos.getInvalidVertex().contains(c))
+					list[current_index].remove(p);
+			}
+		}
+
+	}
+
+	public void createGraph() {
+		for (int i = 0; i < infos.getHeight(); i++) {
+			for (int j = 0; j < infos.getWidth(); j++) {
+				LinkedList<Integer> tmp = new LinkedList<Integer>();
+				checkBound(i, j, tmp);
+				list[i * infos.getHeight() + j] = tmp;
+				removeIllegalEdge(i, j);
+			}
+		}
+	}
+
 	public int numberVertex() {
 		return list.length;
 	}
-	
-	
-	public boolean exist(Vertex a, Vertex b) {
-		return false;
+
+	public boolean existEdge(Vertex a, Vertex b) {
+		int i_a = a.getX() + infos.getHeight() + a.getY();
+		int i_b = b.getX() + infos.getHeight() + a.getY();
+		
+		return list[i_a].contains(i_b);
 	}
-	
-	public void printf(){
-		for(int i = 0; i<list.length;i++){
-			System.out.println(i + " -> " +list[i]);
+
+	public void printf() {
+		for (int i = 0; i < list.length; i++) {
+			System.out.println(i + " -> " + list[i]);
 		}
 	}
-	
 
-	
-
-	
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 public class GraphInformations {
 	private Vertex start;
 	private Vertex end;
-	private final HashSet<Vertex> invalidEdge;
+	private final HashSet<Vertex> invalidVertex;
 	private int height;
 	private int width;
 
@@ -16,7 +16,7 @@ public class GraphInformations {
 		this.end = new Vertex();
 		this.height = 0;
 		this.width = 0;
-		this.invalidEdge = new HashSet<Vertex>();
+		this.invalidVertex = new HashSet<Vertex>();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -25,7 +25,7 @@ public class GraphInformations {
 		this.end = new Vertex(graph.getEnd());
 		this.height = graph.height;
 		this.width = graph.width;	
-		this.invalidEdge = (HashSet<Vertex>) graph.invalidEdge.clone();
+		this.invalidVertex = (HashSet<Vertex>) graph.invalidVertex.clone();
 	}
 
 	// Je sais ce que je fais ;) ... -> A delete
@@ -36,7 +36,7 @@ public class GraphInformations {
 		this.end = Objects.requireNonNull(end);
 		this.height = height;
 		this.width = width;
-		this.invalidEdge = (HashSet<Vertex>) invalidEdge.clone();
+		this.invalidVertex= (HashSet<Vertex>) invalidEdge.clone();
 	}
 
 	public Vertex getStart() {
@@ -55,12 +55,12 @@ public class GraphInformations {
 		this.end = end;
 	}
 
-	public Set<Vertex> getInvalidEdge() {
-		return invalidEdge;
+	public Set<Vertex> getInvalidVertex() {
+		return invalidVertex;
 	}
 	
-	public void addInvalidEdge(Vertex e) {
-		this.invalidEdge.add(e);
+	public void addInvalidVertex(Vertex e) {
+		this.invalidVertex.add(e);
 	}
 
 	public int getHeight() {

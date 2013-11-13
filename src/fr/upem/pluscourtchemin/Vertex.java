@@ -1,15 +1,21 @@
 package fr.upem.pluscourtchemin;
 
+import java.util.Objects;
+
 public class Vertex {
 	private final int x;
 	private final int y;
 	
 	public Vertex(int x, int y){
+		if(x < 0 || y < 0){
+			throw new IllegalArgumentException("The points in vertex must be positive");
+		}
 		this.x = x;
 		this.y = y;
 	}
 	
-	public Vertex(Vertex v){		
+	public Vertex(Vertex v){	
+		Objects.requireNonNull(v);
 		this.x = v.x;
 		this.y = v.y;
 	}

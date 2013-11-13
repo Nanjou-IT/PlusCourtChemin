@@ -29,7 +29,7 @@ public class PicturePng {
 	}
 	
 	private void addInvalidPoints(){
-		Iterator<Vertex> it = graph.getInvalidEdge().iterator();
+		Iterator<Vertex> it = graph.getInvalidVertex().iterator();
 		while(it.hasNext()){
 			Vertex e = (Vertex) it.next();
 			image.setRGB(e.getX(), e.getY(), Color.BLACK.getRGB());

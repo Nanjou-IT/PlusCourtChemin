@@ -26,15 +26,15 @@ public class XMLParser extends DefaultHandler {
 			parser.parse(nameXmlFile, this);
 		} catch (ParserConfigurationException e) {
 			System.out.println("Erreur de configuration du parseur");
-			System.out.println("Lors de l'appel à newSAXParser()");
+			System.out.println("Lors de l'appel ï¿½ newSAXParser()");
 			e.printStackTrace();
 		} catch (SAXException e) {
 			System.out.println("Erreur de parsing");
-			System.out.println("Lors de l'appel à parse()");
+			System.out.println("Lors de l'appel ï¿½ parse()");
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Erreur d'entree/sortie");
-			System.out.println("Lors de l'appel à parse()");
+			System.out.println("Lors de l'appel ï¿½ parse()");
 			e.printStackTrace();
 		}
 	}
@@ -57,7 +57,7 @@ public class XMLParser extends DefaultHandler {
 			for(int i = topLeftX ; i <= bottomRightX ; i++){
 				for( int j = topLeftY ; j <= bottomRightY ; j++){
 					Vertex e = new Vertex(i,j);
-					this.graph.addInvalidEdge(e);
+					this.graph.addInvalidVertex(e);
 				}
 			}
 		}
