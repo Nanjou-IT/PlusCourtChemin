@@ -18,8 +18,17 @@ public class GraphInformations {
 		this.width = 0;
 		this.invalidEdge = new HashSet<Vertex>();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public GraphInformations(GraphInformations graph){
+		this.start = new Vertex(graph.getStart());
+		this.end = new Vertex(graph.getEnd());
+		this.height = graph.height;
+		this.width = graph.width;	
+		this.invalidEdge = (HashSet<Vertex>) graph.invalidEdge.clone();
+	}
 
-	// Je sais ce que je fais ;)
+	// Je sais ce que je fais ;) ... -> A delete
 	@SuppressWarnings("unchecked")
 	public GraphInformations(Vertex start, Vertex end, HashSet<Vertex> invalidEdge, int height, int width) {
 		Objects.requireNonNull(invalidEdge);

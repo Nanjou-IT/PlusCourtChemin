@@ -26,9 +26,9 @@ public class Main {
 		p.addPoints();
 		p.saveImage();
 		
-		Graph graph = new Graph();
-		graph.createGraph(graphInfos);
-		graph.print();
+		Graph graph = new Graph(graphInfos);
+		graph.createGraph();
+		graph.printf();
 		
 	}
 }

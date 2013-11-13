@@ -7,54 +7,56 @@ import java.util.List;
 import java.util.Map;
 
 public class Graph {
-	// Il faut qu'on voit les autres structures possibles
-	//private final GraphImpl[] list ;
-	// Why Not : SortedMap
-	HashMap<Vertex,List<Vertex>> map ;
+	private final GraphInformations infos;
+	private final LinkedList<Integer>[] list ;
 	
-	public Graph(){
-		//list = new GraphImpl[graph.getHeight() * graph.getWidth() - graph.getInvalidEdge().size() + 1];*
-		map = new HashMap<Vertex,List<Vertex>>();
+	@SuppressWarnings("unchecked")
+	public Graph(GraphInformations graph){
+		this.infos = new GraphInformations(graph);				
+		LinkedList<Integer>[] tmp = new LinkedList[infos.getHeight() * infos.getWidth()];
+		for(int i =0 ; i < tmp.length ; i++){
+			tmp[i] = new LinkedList<Integer>();
+		}		
+		this.list = tmp;
 	}
 	
 	/*
-	 *  Bordure ? Obstacle ? Vertex d'arrivé ?
+	 *  Bordure ? Obstacle ? Vertex d'arrivï¿½ ?
 	 *  
 	 * 			*  *  *
 	 * 	 		*  V  *
 	 *  		*  *  *
 	 */
-	public void createGraph(GraphInformations graph){
-		int compteur = 0;
+	public void createGraph(){
 
-		for (int i = 0; i < graph.getHeight(); i++) {
-			for (int j = 0; j < graph.getWidth(); j++) {
+		for (int i = 0; i < infos.getHeight(); i++) {
+			for (int j = 0; j < infos.getWidth(); j++) {
 				
 				Vertex e = new Vertex(i, j);
 				// Edge is not an obstacle, so it is possible to reach it 
-				if (!(graph.getInvalidEdge().contains(e))) {
+				if (!(infos.getInvalidEdge().contains(e))) {
 					// Edge 'e' is a starting edge
 					//list[compteur] = new GraphImpl(e);
 					
 					
-					List<Vertex> tmp =  new LinkedList<Vertex>();
+					LinkedList<Integer> tmp =  new LinkedList<Integer>();
 					
 					for (int k = i - 1; k <= i + 1; k++) {
 						for (int l = j - 1; l <= j + 1; l++) {
-							if ((k >= 0 && k < graph.getHeight()) && (l >= 0	&& l < graph.getWidth())  ) { // Check Range
-								tmp.add(new Vertex(i,j));								
+							if ((k >= 0 && k < infos.getHeight()) && (l >= 0	&& l < infos.getWidth())  ) { // Check Range
+								tmp.add(k*infos.getHeight()+l);
+								
 							}
 						}
 					}
-					map.put(e, tmp);
-					compteur++;
+					list[i*infos.getHeight()+j] = tmp;
 				}
 			}
 		}
 	}
 	
-	public int numberEdge() {
-		return map.size();
+	public int numberVertex() {
+		return list.length;
 	}
 	
 	
@@ -62,18 +64,14 @@ public class Graph {
 		return false;
 	}
 	
-	public void addEdge(Vertex a, Vertex b) { 
-		
+	public void printf(){
+		for(int i = 0; i<list.length;i++){
+			System.out.println(i + " -> " +list[i]);
+		}
 	}
 	
-	// Debug
-	public void print(){
-		 Iterator it = map.entrySet().iterator();
-		    while (it.hasNext()) {
-		        Map.Entry m = (Map.Entry)it.next();
-		        System.out.println(m.getKey() + " => " + m.getValue());
-		        }
-	}
+
+	
 
 	
 }

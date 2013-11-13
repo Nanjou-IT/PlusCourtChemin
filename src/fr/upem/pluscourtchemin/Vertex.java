@@ -9,6 +9,11 @@ public class Vertex {
 		this.y = y;
 	}
 	
+	public Vertex(Vertex v){		
+		this.x = v.x;
+		this.y = v.y;
+	}
+	
 	public Vertex() {
 		this(0,0);
 	}
