@@ -10,23 +10,28 @@ public class Graphs {
 		
 		int nb_vertex = graph.VerticesCount();
 		LinkedBlockingQueue<Vertex> fifo = new LinkedBlockingQueue<Vertex>(graph.getAllVertex());
-		Vertex[] pi = new Vertex[nb_vertex];
-		Integer[] d = new Integer[nb_vertex];
+		HashMap<Object, Object> pi = new HashMap<>();
+		HashMap<Vertex,Integer> d = new HashMap<>();
+		
 		
 		
 		
 		//Initialisation
 		for(Vertex vt : fifo){
+			pi.put(vt,null);
 			if(vt.equals(v)){
-				
+				d.put(vt,Integer.MAX_VALUE);
 			} else{
-				
+				d.put(vt, 0);
 			}
 		}
 		
 		// Executer l'algo de dijsktra
 		while(!fifo.isEmpty()){
-			
+			Vertex x = fifo.poll();
+			for(Vertex y : graph.getNeighbours(x)){
+				
+			}
 		}
 		
 		

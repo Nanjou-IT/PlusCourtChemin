@@ -1,6 +1,7 @@
 package fr.upem.pluscourtchemin;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Set;
 
@@ -64,6 +65,27 @@ public class GraphInformations {
 		this.invalidVertex.add(e);
 	}
 
+	/**
+	 * Method that converts an image representation (x,y) to a graph 
+	 * representation of the obstacles present in the image.
+	 * 
+	 * @return List of obstacles corresponding to a graph view
+	 */
+	public LinkedList<Integer> getGraphObstacles() {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		
+		int height = this.height;
+		for (Vertex v : this.invalidVertex) {
+			if (v == null) {
+				continue;
+			}
+			
+			list.add(v.getX() * height + v.getY());
+		}
+		
+		return list;
+	}
+	
 	public int getHeight() {
 		return height;
 	}
