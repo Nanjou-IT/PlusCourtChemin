@@ -26,17 +26,19 @@ public class GraphInformations {
 		this.height = graph.height;
 		this.width = graph.width;	
 		this.invalidVertex = (HashSet<Vertex>) graph.invalidVertex.clone();
+		//this.invalidVertex = (HashSet<Vertex>) graph.getInvalidVertex();
 	}
 
 	// Je sais ce que je fais ;) ... -> A delete
 	@SuppressWarnings("unchecked")
-	public GraphInformations(Vertex start, Vertex end, HashSet<Vertex> invalidEdge, int height, int width) {
-		Objects.requireNonNull(invalidEdge);
+	public GraphInformations(Vertex start, Vertex end, HashSet<Vertex> invalidVertex, int height, int width) {
+		Objects.requireNonNull(invalidVertex);
 		this.start = Objects.requireNonNull(start);
 		this.end = Objects.requireNonNull(end);
 		this.height = height;
 		this.width = width;
-		this.invalidVertex= (HashSet<Vertex>) invalidEdge.clone();
+		this.invalidVertex= (HashSet<Vertex>) invalidVertex.clone();
+		//this.invalidVertex = invalidVertex;
 	}
 
 	public Vertex getStart() {

@@ -1,6 +1,8 @@
 package fr.upem.pluscourtchemin;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -29,6 +31,10 @@ public class Main {
 		Graph graph = new Graph(graphInfos);
 		graph.createGraph();
 		graph.printf();
+		
+
+		
+	
 		
 	}
 }

@@ -1,5 +1,6 @@
 package fr.upem.pluscourtchemin;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 
@@ -30,25 +31,20 @@ public class Graph {
 	}
 	
 	private void removeIllegalEdge(int i, int j) { // C'est a finir
-	
-		Vertex v = new Vertex(i, j);
+		
 		int current_index = i * infos.getHeight() + j;
-
-		if (infos.getInvalidVertex().contains(v)) {
-			System.out.println("toto");
+		if (infos.getInvalidVertex().contains(new Vertex(i, j))) {
 			list[current_index] = null;
 		}
-		if (list[i * infos.getHeight() + j] != null) {
-			for (Integer p : list[current_index]) {
-				
-				
+		if (list[current_index] != null) {
+			Iterator<Integer> it = list[current_index].iterator();
+			while(it.hasNext()){
+				Integer p = it.next();
 				int c_i = p / infos.getHeight();
 				int c_j = p - c_i * infos.getHeight();
-				
-				
-				Vertex c = new Vertex(c_i, c_j);
-				if (infos.getInvalidVertex().contains(c))
-					list[current_index].remove(p);
+			
+				if (infos.getInvalidVertex().contains(new Vertex(c_i, c_j)))
+					it.remove();
 			}
 		}
 

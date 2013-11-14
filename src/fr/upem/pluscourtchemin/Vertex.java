@@ -45,4 +45,9 @@ public class Vertex {
 	public String toString(){
 		return "Vertex " + this.x + " : " + this.y; 
 	}
+	
+	@Override // toCheck()
+	public int hashCode(){
+		return 10 * x + y;
+	}
 }
