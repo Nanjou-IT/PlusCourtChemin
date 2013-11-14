@@ -7,14 +7,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Graphs {
 	public static void djikstra(Graph graph,Vertex v){
 		//TODO
-		
-		int nb_vertex = graph.VerticesCount();
 		LinkedBlockingQueue<Vertex> fifo = new LinkedBlockingQueue<Vertex>(graph.getAllVertex());
 		HashMap<Object, Object> pi = new HashMap<>();
-		HashMap<Vertex,Integer> d = new HashMap<>();
-		
-		
-		
+		HashMap<Vertex,Integer> d = new HashMap<>();		
 		
 		//Initialisation
 		for(Vertex vt : fifo){
@@ -30,9 +25,15 @@ public class Graphs {
 		while(!fifo.isEmpty()){
 			Vertex x = fifo.poll();
 			for(Vertex y : graph.getNeighbours(x)){
-				
+				if(d.get(x) + Graph.WEIGHT_EDGE < d.get(y)){
+					d.put(y, d.get(x) + Graph.WEIGHT_EDGE);
+					pi.put(y, x);
+				}
 			}
 		}
+		
+		
+		
 		
 		
 	}

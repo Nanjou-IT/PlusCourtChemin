@@ -7,7 +7,7 @@ import java.util.List;
 public class Graph implements GraphInterface {
 	private final GraphInformations infos;
 	private final LinkedList<Integer>[] array;	
-	private final static int WEIGHT_EDGE = 1;
+	public final static int WEIGHT_EDGE = 1;
 
 	@SuppressWarnings("unchecked")
 	public Graph(GraphInformations graph) {
