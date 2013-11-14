@@ -1,33 +1,52 @@
 package fr.upem.pluscourtchemin;
 
+import java.util.Arrays;
+
 public class ArgsHandler {
-	
-	private String inputName;
-	private String outputName;
+	private final String[] argLine;
 	
 	public ArgsHandler(String[] args){
-		if(args.length != 4 ){
-			throw new IllegalArgumentException("Kaboom");
+		if(args.length < 4 ){
+			throw new IllegalArgumentException("Usage : java ProjetAlgo -i input.xml -o output.png");
 		}
-		for(int i=0;i<args.length;i++){
+		
+		this.argLine = Arrays.copyOf(args, args.length);
+	}
+	
+	/**
+	 * Function to retrieve the xml filename for the parsing.
+	 * 
+	 * @return corresponding filename if in the line or null if 
+	 * 			no one was found.
+	 */
+	public String getXmlFileName() {
+		String[] args = argLine;
+
+		for (int i = 0 ; i < args.length; i++) {
 			if(args[i].equals("-i")){
-				inputName = new String(args[i+1]) ;
-			}
-			if(args[i].equals("-o")){
-				outputName = new String(args[i+1]);
+				return new String(args[i+1]) ;
 			}
 		}
 		
+		return null;
 	}
 	
-	public String getInputName(){
-		return inputName;
-	}
-	
-	public String getOutputName(){
-		return outputName;
-	}
-	
-	
+	/**
+	 * Function to retrieve the png filename that will be generated
+	 * 	on output.
+	 * 
+	 * @return corresponding filename if in the line or null if 
+	 * 			no one was found.
+	 */
+	public String getPngOutputName() {
+		String[] args = argLine;
 
+		for (int i = 0 ; i < args.length; i++) {
+			if(args[i].equals("-o")){
+				return new String(args[i+1]) ;
+			}
+		}
+		
+		return null;
+	}
 }

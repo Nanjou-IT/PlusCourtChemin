@@ -13,7 +13,14 @@ public class Main {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		// Have to handle args properly
 		System.out.println("Projet d'algo !");
+		
 		String nameFileXml = "test.xml";
+		String namePngImage = "test.png";
+		
+		// Add exception into Arg parsing
+//		ArgsHandler arguments = new ArgsHandler(args);
+//		namePngImage = arguments.getPngOutputName();
+//		nameFileXml = arguments.getXmlFileName();
 		
 		// Parse the given file and map it into the GraphObject
 		GraphInformations graphInfos = new GraphInformations();
@@ -24,7 +31,7 @@ public class Main {
 		// Have to check the GraphObject: borns etc..
 		
 		// Draw the PNG image from GraphObject and write it on disk.
-		PicturePng p = new PicturePng("test.png", graphInfos);
+		PicturePng p = new PicturePng(namePngImage, graphInfos);
 		p.init();
 		p.addPoints();
 		p.saveImage();
