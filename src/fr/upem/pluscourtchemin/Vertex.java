@@ -48,6 +48,6 @@ public class Vertex {
 	
 	@Override 
 	public int hashCode(){
-		return 10 * x + y;
+		return 10 * x + y;		
 	}
 }

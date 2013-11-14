@@ -35,9 +35,9 @@ public class Graph implements GraphInterface{
 		
 		int current_index = i * infos.getHeight() + j;
 		if (infos.getInvalidVertex().contains(new Vertex(i, j))) {
-			list[current_index] = null;
+			list[current_index] = new LinkedList<Integer>(); // vide
 		}
-		if (list[current_index] != null) {
+		if (!list[current_index].isEmpty()) {
 			Iterator<Integer> it = list[current_index].iterator();
 			while(it.hasNext()){
 				Integer p = it.next();
