@@ -46,7 +46,7 @@ public class Vertex {
 		return "Vertex " + this.x + " : " + this.y; 
 	}
 	
-	@Override // toCheck()
+	@Override 
 	public int hashCode(){
 		return 10 * x + y;
 	}

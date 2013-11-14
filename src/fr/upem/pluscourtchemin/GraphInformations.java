@@ -38,7 +38,6 @@ public class GraphInformations {
 		this.height = height;
 		this.width = width;
 		this.invalidVertex= (HashSet<Vertex>) invalidVertex.clone();
-		//this.invalidVertex = invalidVertex;
 	}
 
 	public Vertex getStart() {
