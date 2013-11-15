@@ -39,10 +39,8 @@ public class Main {
 		Graph graph = new Graph(graphInfos);
 		graph.createGraph();
 		graph.printf();
+		
 		//Graphs.djikstra(graph, new Vertex(0,0));
-	
-				
-
 		
 	
 		
