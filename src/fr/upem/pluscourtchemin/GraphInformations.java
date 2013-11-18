@@ -74,13 +74,12 @@ public class GraphInformations {
 	public LinkedList<Integer> getGraphObstacles() {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		
-		int height = this.height;
 		for (Vertex v : this.invalidVertex) {
 			if (v == null) {
 				continue;
 			}
 			
-			list.add(v.getX() * height + v.getY());
+			list.add(v.getX() + width * v.getY());
 		}
 		
 		return list;
@@ -93,7 +92,7 @@ public class GraphInformations {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
+	
 	public int getWidth() {
 		return width;
 	}

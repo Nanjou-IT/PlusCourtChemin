@@ -14,7 +14,7 @@ public class Main {
 		// Have to handle args properly
 		System.out.println("Projet d'algo !");
 		
-		String nameFileXml = "test.xml";
+		String nameFileXml = "test_remi.xml";
 		String namePngImage = "test.png";
 		
 		// Add exception into Arg parsing
@@ -27,20 +27,26 @@ public class Main {
 		XMLParser parser = new XMLParser(nameFileXml, graphInfos);
 		parser.parseDocument();		
 		
-		// TODO : ..
-		// Have to check the GraphObject: borns etc..
 		
 		// Draw the PNG image from GraphObject and write it on disk.
 		PicturePng p = new PicturePng(namePngImage, graphInfos);
 		p.init();
 		p.addPoints();
-		p.saveImage();
-		
+
 		Graph graph = new Graph(graphInfos);
 		graph.createGraph();
-		graph.printf();
 		
-		//Graphs.djikstra(graph, new Vertex(0,0));
+		System.out.println("_______________________ > "+graph.getAllVertex()); 
+		
+		graph.printLog();
+	
+		
+		List<Vertex> list_successeur = Graphs.djikstra(graph, graphInfos.getStart(),graphInfos.getEnd());
+		p.addShortedPath(list_successeur);
+		p.saveImage();
+		
+		
+		
 		
 	
 		

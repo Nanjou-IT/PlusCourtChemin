@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 import javax.imageio.ImageIO;
@@ -17,12 +18,13 @@ public class PicturePng {
 	public PicturePng(String name, GraphInformations graph){
 		this.name = Objects.requireNonNull(name);
 		this.graph = Objects.requireNonNull(graph);
-		this.image = new BufferedImage(graph.getHeight(),graph.getWidth(),BufferedImage.TYPE_INT_RGB);
+		this.image = new BufferedImage(graph.getWidth(),graph.getHeight(),BufferedImage.TYPE_INT_RGB);
+		System.out.println("h: "+graph.getHeight() + " w:" + graph.getWidth()); 
 	}
 	
 	public void init(){
-		for(int i = 0 ; i < graph.getHeight() ; i++){
-			for(int j = 0 ; j < graph.getWidth() ; j++){
+		for(int i = 0 ; i < graph.getWidth() ; i++){
+			for(int j = 0 ; j < graph.getHeight() ; j++){
 				image.setRGB(i, j, Color.WHITE.getRGB());
 			}
 		}
@@ -41,9 +43,16 @@ public class PicturePng {
 		image.setRGB(eStart.getX(), eStart.getY(), Color.RED.getRGB());
 		
 		Vertex eEnd = graph.getEnd();
+		System.out.println(eEnd); 
 		image.setRGB(eEnd.getX(), eEnd.getY(), Color.RED.getRGB());
 		
 		addInvalidPoints();
+	}
+	
+	public void addShortedPath(List<Vertex> list){
+		for(Vertex v : list){
+			image.setRGB(v.getX(), v.getY(), Color.MAGENTA.getRGB());
+		}
 	}
 	
 	/* TODO: Ajouter la gestion des Exceptions */
