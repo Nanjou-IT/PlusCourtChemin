@@ -22,23 +22,12 @@ public class GraphInformations {
 	
 	@SuppressWarnings("unchecked")
 	public GraphInformations(GraphInformations graph){
+		Objects.requireNonNull(graph);
 		this.start = new Vertex(graph.getStart());
 		this.end = new Vertex(graph.getEnd());
 		this.height = graph.height;
 		this.width = graph.width;	
 		this.invalidVertex = (HashSet<Vertex>) graph.invalidVertex.clone();
-		//this.invalidVertex = (HashSet<Vertex>) graph.getInvalidVertex();
-	}
-
-	// Je sais ce que je fais ;) ... -> A delete
-	@SuppressWarnings("unchecked")
-	public GraphInformations(Vertex start, Vertex end, HashSet<Vertex> invalidVertex, int height, int width) {
-		Objects.requireNonNull(invalidVertex);
-		this.start = Objects.requireNonNull(start);
-		this.end = Objects.requireNonNull(end);
-		this.height = height;
-		this.width = width;
-		this.invalidVertex= (HashSet<Vertex>) invalidVertex.clone();
 	}
 
 	public Vertex getStart() {
@@ -74,12 +63,13 @@ public class GraphInformations {
 	public LinkedList<Integer> getGraphObstacles() {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		
+		int height = this.height;
 		for (Vertex v : this.invalidVertex) {
 			if (v == null) {
 				continue;
 			}
 			
-			list.add(v.getX() + width * v.getY());
+			list.add(v.getX() * height + v.getY());
 		}
 		
 		return list;
@@ -92,7 +82,7 @@ public class GraphInformations {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}

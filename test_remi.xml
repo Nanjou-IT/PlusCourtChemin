@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rectangle>
+  <dimension height="3" width="4"/>
+  <obstacles>
+    <obstacle bottomrightx="2" bottomrighty="2" topleftx="2" toplefty="1"/>
+  </obstacles>
+  <points>
+    <start x="0" y="0"/>
+    <end x="3" y="2"/>
+  </points>
+</rectangle>

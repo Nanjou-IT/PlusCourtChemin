@@ -19,13 +19,13 @@ public class PicturePng {
 		this.name = Objects.requireNonNull(name);
 		this.graph = Objects.requireNonNull(graph);
 		this.image = new BufferedImage(graph.getWidth(),graph.getHeight(),BufferedImage.TYPE_INT_RGB);
-		System.out.println("h: "+graph.getHeight() + " w:" + graph.getWidth()); 
 	}
 	
 	public void init(){
-		for(int i = 0 ; i < graph.getWidth() ; i++){
-			for(int j = 0 ; j < graph.getHeight() ; j++){
-				image.setRGB(i, j, Color.WHITE.getRGB());
+		for(int j = 0 ; j < graph.getWidth() ; j++){
+			for(int i = 0 ; i < graph.getHeight() ; i++){
+			
+				image.setRGB(j, i, Color.WHITE.getRGB());
 			}
 		}
 	}
@@ -43,7 +43,6 @@ public class PicturePng {
 		image.setRGB(eStart.getX(), eStart.getY(), Color.RED.getRGB());
 		
 		Vertex eEnd = graph.getEnd();
-		System.out.println(eEnd); 
 		image.setRGB(eEnd.getX(), eEnd.getY(), Color.RED.getRGB());
 		
 		addInvalidPoints();
